@@ -773,20 +773,28 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
             flex-shrink: 0;
+            overflow: hidden;
+            padding: 0;
+        }
+
+        .order-card-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 16px;
         }
 
         .order-card.shopee .order-card-icon {
-            background: linear-gradient(135deg, #FF6B35, #EE4D2D);
+            background: rgba(238, 77, 45, 0.08);
         }
 
         .order-card.gofood .order-card-icon {
-            background: linear-gradient(135deg, #00AA5B, #008C49);
+            background: rgba(0, 170, 91, 0.08);
         }
 
         .order-card.grabfood .order-card-icon {
-            background: linear-gradient(135deg, #00B14F, #009E45);
+            background: rgba(0, 177, 79, 0.08);
         }
 
         .order-card-content {
@@ -1553,7 +1561,9 @@
             </div>
             <div class="order-grid">
                 <a href="https://shopee.co.id/universal-link/now-food/shop/23044842?deep_and_deferred=1&shareChannel=copy_link" target="_blank" class="order-card shopee">
-                    <div class="order-card-icon">🛍️</div>
+                    <div class="order-card-icon">
+                        <img src="https://raw.githubusercontent.com/ferryad98-dev/PISANG-GORENG-MADU-QUEENA/main/shopee.png" alt="ShopeeFood" loading="lazy">
+                    </div>
                     <div class="order-card-content">
                         <div class="order-card-name">ShopeeFood</div>
                         <div class="order-card-desc">Pesan via Shopee</div>
@@ -1561,7 +1571,9 @@
                     <div class="order-card-arrow">→</div>
                 </a>
                 <a href="https://gofood.link/a/TwduKLm" target="_blank" class="order-card gofood">
-                    <div class="order-card-icon">🟢</div>
+                    <div class="order-card-icon">
+                        <img src="https://raw.githubusercontent.com/ferryad98-dev/PISANG-GORENG-MADU-QUEENA/main/gofood.png" alt="GoFood" loading="lazy">
+                    </div>
                     <div class="order-card-content">
                         <div class="order-card-name">GoFood</div>
                         <div class="order-card-desc">Pesan via Gojek</div>
@@ -1569,7 +1581,9 @@
                     <div class="order-card-arrow">→</div>
                 </a>
                 <a href="https://r.grab.com/g/6-20260708_152405_C811486FE28A4A1A8E80F7F0E0AE60E3_MEXMPS-6-C76BC2KTTRMCNN" target="_blank" class="order-card grabfood">
-                    <div class="order-card-icon">🟩</div>
+                    <div class="order-card-icon">
+                        <img src="https://raw.githubusercontent.com/ferryad98-dev/PISANG-GORENG-MADU-QUEENA/main/grab.png" alt="GrabFood" loading="lazy">
+                    </div>
                     <div class="order-card-content">
                         <div class="order-card-name">GrabFood</div>
                         <div class="order-card-desc">Pesan via Grab</div>
