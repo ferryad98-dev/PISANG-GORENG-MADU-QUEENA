@@ -134,25 +134,27 @@
             gap: 10px;
         }
 
-        .nav-logo-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--honey), var(--honey-dark));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-        }
-
         .nav-logo-text {
             font-family: 'Playfair Display', serif;
             font-weight: 800;
-            font-size: 1.05rem;
+            font-size: 0.9rem;
             color: var(--brown);
+            white-space: nowrap;
         }
 
         .nav-logo-text span { color: var(--honey); }
+
+        .nav-logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--honey), var(--honey-dark));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
 
         /* Mobile menu button */
         .nav-menu-btn {
@@ -1128,24 +1130,7 @@
             }
         }
 
-        /* Dark mode support */
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --cream: #1a1410;
-                --cream-dark: #2a1f17;
-                --white: #241c15;
-                --text: #e8ddd3;
-                --text-light: #b8a99a;
-                --brown: #f5e6d8;
-                --shadow: rgba(0,0,0,0.3);
-                --shadow-lg: rgba(0,0,0,0.5);
-            }
-
-            .navbar { background: rgba(36, 28, 21, 0.97); }
-            .mobile-drawer { background: #241c15; }
-            .drawer-nav a { color: var(--text); }
-            .drawer-nav a:active { background: var(--cream-dark); }
-        }
+        /* Always light theme - no dark mode */
     </style>
 </head>
 <body>
@@ -1154,8 +1139,8 @@
     <nav class="navbar">
         <div class="nav-container">
             <a href="#" class="nav-logo">
+                <div class="nav-logo-text">Pisang Goreng Madu <span>Queena</span></div>
                 <div class="nav-logo-icon">🍌</div>
-                <div class="nav-logo-text">Pisang Madu <span>Queena</span></div>
             </a>
 
             <!-- Desktop Nav -->
@@ -1184,8 +1169,8 @@
     <div class="mobile-drawer" id="mobileDrawer">
         <div class="drawer-header">
             <div class="nav-logo">
+                <div class="nav-logo-text">Pisang Goreng Madu <span>Queena</span></div>
                 <div class="nav-logo-icon">🍌</div>
-                <div class="nav-logo-text">Queena</div>
             </div>
             <button class="drawer-close" onclick="closeDrawer()" aria-label="Tutup menu">
                 <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round">
@@ -1509,8 +1494,8 @@
             <div class="footer-top">
                 <div class="footer-brand">
                     <div class="footer-logo">
+                        <div class="footer-logo-text">Pisang Goreng Madu <span style="color:var(--honey)">Queena</span></div>
                         <div class="footer-logo-icon">🍌</div>
-                        <div class="footer-logo-text">Pisang Goreng Madu Queena</div>
                     </div>
                     <p class="footer-desc">Camilan pisang goreng madu paling lezat di Singosari, Malang. Rating 5.0 di Google Maps!</p>
                 </div>
