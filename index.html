@@ -885,6 +885,36 @@
             transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
+        .menu-card-img .img-fallback {
+            position: absolute;
+            inset: 0;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #FFF3D6, #FFE4A0);
+            z-index: 2;
+        }
+
+        .menu-card-img .img-fallback.show {
+            display: flex;
+        }
+
+        .img-fallback-emoji {
+            font-size: 3.5rem;
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.1));
+        }
+
+        .img-fallback-text {
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: var(--brown);
+            text-align: center;
+            padding: 0 12px;
+            line-height: 1.3;
+        }
+
         .menu-card:hover .menu-card-img img,
         .menu-card:active .menu-card-img img {
             transform: scale(1.1);
@@ -2028,7 +2058,11 @@
 
                 <div class="menu-card reveal" data-category="goreng">
                     <div class="menu-card-img">
-                        <img src="https://raw.githubusercontent.com/ferryad98-dev/PISANG-GORENG-MADU-QUEENA/main/menu/Pisang%20Goreng%20%20Dengan%20Toping%20Crumble%20Oreo.jpeg" alt="Pisang Goreng Crumble Oreo" loading="lazy">
+                        <img src="https://raw.githubusercontent.com/ferryad98-dev/PISANG-GORENG-MADU-QUEENA/main/menu/Pisang%20Goreng%20Crumble%20Oreo.jpeg" alt="Pisang Goreng Crumble Oreo" loading="lazy" onerror="handleImgError(this)">
+                        <div class="img-fallback">
+                            <span class="img-fallback-emoji">🍌</span>
+                            <span class="img-fallback-text">Crumble Oreo</span>
+                        </div>
                         <span class="menu-card-tag">🆕 Baru!</span>
                     </div>
                     <div class="menu-card-body">
@@ -2230,7 +2264,11 @@
 
                 <div class="menu-card reveal" data-category="bakar">
                     <div class="menu-card-img">
-                        <img src="https://raw.githubusercontent.com/ferryad98-dev/PISANG-GORENG-MADU-QUEENA/main/menu/Pisang%20Bakar%20Redvelvet.jpeg" alt="Pisang Bakar Red Velvet" loading="lazy">
+                        <img src="https://raw.githubusercontent.com/ferryad98-dev/PISANG-GORENG-MADU-QUEENA/main/menu/Pisang%20Bakar%20Redvelvet.jpeg" alt="Pisang Bakar Red Velvet" loading="lazy" onerror="handleImgError(this)">
+                        <div class="img-fallback">
+                            <span class="img-fallback-emoji">🔥</span>
+                            <span class="img-fallback-text">Red Velvet</span>
+                        </div>
                     </div>
                     <div class="menu-card-body">
                         <h3 class="menu-card-name">Pisang Bakar Red Velvet</h3>
@@ -2563,6 +2601,50 @@
             });
         });
 
+        // ===== IMAGE ERROR FALLBACK =====
+        function handleImgError(img) {
+            img.style.display = 'none';
+            const fallback = img.parentElement.querySelector('.img-fallback');
+            if (fallback) {
+                fallback.classList.add('show');
+            }
+        }
+
+        // Auto-add fallback to all menu images on load
+        function initImageFallbacks() {
+            const menuImgs = document.querySelectorAll('.menu-card-img img');
+            menuImgs.forEach(img => {
+                // Add onerror if not already present
+                if (!img.getAttribute('onerror')) {
+                    img.setAttribute('onerror', 'handleImgError(this)');
+                }
+                // Add fallback div if not present
+                if (!img.parentElement.querySelector('.img-fallback')) {
+                    const cardName = img.closest('.menu-card').querySelector('.menu-card-name');
+                    const name = cardName ? cardName.textContent.replace('Pisang Goreng ', '').replace('Pisang Bakar ', '') : 'Menu';
+                    const emoji = img.closest('.menu-card').dataset.category === 'bakar' ? '🔥' : '🍌';
+                    const fallbackDiv = document.createElement('div');
+                    fallbackDiv.className = 'img-fallback';
+                    fallbackDiv.innerHTML = `<span class="img-fallback-emoji">${emoji}</span><span class="img-fallback-text">${name}</span>`;
+                    img.parentElement.appendChild(fallbackDiv);
+                }
+            });
+        }
+
+        // Run on DOM ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initImageFallbacks);
+        } else {
+            initImageFallbacks();
+        }
+
+        // Global image error handler (catches all img errors)
+        document.addEventListener('error', function(e) {
+            if (e.target.tagName === 'IMG' && e.target.closest('.menu-card-img')) {
+                handleImgError(e.target);
+            }
+        }, true); // useCapture = true to catch errors in bubble phase
+
         // ===== MENU FILTER TABS =====
         function filterMenu(category) {
             // Update active tab
@@ -2602,5 +2684,5 @@
             card.style.transitionDelay = `${(index % 4) * 0.1}s`;
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a17deb6f3a9adaa5',t:'MTc4MzUwMTQ0Nw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
